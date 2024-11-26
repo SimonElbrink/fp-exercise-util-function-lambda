@@ -1,6 +1,10 @@
 package se.lexicon;
 
 import se.lexicon.data.DataStorage;
+import se.lexicon.data.DataStorageImpl;
+import se.lexicon.model.Person;
+
+import java.util.List;
 
 public class Exercises {
 
@@ -12,9 +16,11 @@ public class Exercises {
     public static void exercise1(String message) {
         System.out.println(message);
 
-        if
 
-        //Write your code here
+        List<Person> persons = storage.findMany(person -> person.getFirstName().equalsIgnoreCase("Erik"));
+
+        System.out.println(persons.toString());
+
 
         System.out.println("----------------------");
     }
