@@ -5,6 +5,8 @@ import se.lexicon.data.DataStorageImpl;
 import se.lexicon.model.Gender;
 import se.lexicon.model.Person;
 
+import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 
 public class Exercises {
@@ -31,7 +33,7 @@ public class Exercises {
      */
     public static void exercise2(String message) {
         System.out.println(message);
-        List<Person> persons = storage.findMany(person -> person.getGender()== Gender.FEMALE);
+        List<Person> persons = storage.findMany(person -> person.getGender() == Gender.FEMALE);
 
         System.out.println(persons.toString());
 
@@ -43,9 +45,15 @@ public class Exercises {
      */
     public static void exercise3(String message) {
         System.out.println(message);
-        //Write your code here
+
+        LocalDate date = LocalDate.parse("2000-01-01");
+
+        List<Person> persons = storage.findMany(person -> person.getBirthDate().isAfter(date) || person.getBirthDate().equals(date));
+
+        persons.forEach(System.out::println);
 
         System.out.println("----------------------");
+
     }
 
     /*
@@ -53,7 +61,11 @@ public class Exercises {
      */
     public static void exercise4(String message) {
         System.out.println(message);
-        //Write your code here
+        Integer id = 123;
+
+        Person person = storage.findOne(p -> p.getId() == id);
+
+        System.out.println("And the person is: " + person.toString());
 
         System.out.println("----------------------");
 
@@ -65,7 +77,15 @@ public class Exercises {
      */
     public static void exercise5(String message) {
         System.out.println(message);
-        //Write your code here
+
+        Integer id = 456;
+
+       String person = storage.findOneAndMapToString(p1 ->
+                       p1.getId() == id, person1 ->
+               "Name: " +person1.getFirstName() + " " + person1.getLastName() + " born " + person1.getBirthDate()
+       );
+
+        System.out.println(person);
 
         System.out.println("----------------------");
     }
