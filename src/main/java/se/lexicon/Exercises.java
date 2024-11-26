@@ -2,6 +2,7 @@ package se.lexicon;
 
 import se.lexicon.data.DataStorage;
 import se.lexicon.data.DataStorageImpl;
+import se.lexicon.model.Gender;
 import se.lexicon.model.Person;
 
 import java.util.List;
@@ -30,7 +31,9 @@ public class Exercises {
      */
     public static void exercise2(String message) {
         System.out.println(message);
-        //Write your code here
+        List<Person> persons = storage.findMany(person -> person.getGender()== Gender.FEMALE);
+
+        System.out.println(persons.toString());
 
         System.out.println("----------------------");
     }
