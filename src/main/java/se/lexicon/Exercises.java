@@ -11,6 +11,9 @@ public class Exercises {
     */
     public static void exercise1(String message) {
         System.out.println(message);
+
+        if
+
         //Write your code here
 
         System.out.println("----------------------");
