@@ -6,6 +6,7 @@ import se.lexicon.model.Gender;
 import se.lexicon.model.Person;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.Arrays;
 import java.util.List;
 
@@ -95,7 +96,13 @@ public class Exercises {
      */
     public static void exercise6(String message) {
         System.out.println(message);
-        //Write your code here
+
+        List<String> persons = storage.findManyAndMapEachToString(p1 ->
+                p1.getFirstName().startsWith("E") && p1.getGender()==Gender.MALE, p2 ->
+                "Name: " + p2.getFirstName() + " " + p2.getLastName() + " with id " + p2.getId() + "\n"
+        );
+
+        System.out.println(persons.toString());
 
         System.out.println("----------------------");
     }
@@ -106,7 +113,15 @@ public class Exercises {
      */
     public static void exercise7(String message) {
         System.out.println(message);
-        //Write your code here
+
+        LocalDate todayDate = LocalDate.now();
+
+        List<String> persons = storage.findManyAndMapEachToString(p1 ->
+                Period.between(p1.getBirthDate(), todayDate).getYears() < 10, p2 ->
+                p2.getFirstName() + " " + p2.getLastName() + " " + Period.between(p2.getBirthDate(), todayDate).getYears() + " years \n"
+        );
+
+        System.out.println(persons.toString());
 
         System.out.println("----------------------");
     }
@@ -116,7 +131,8 @@ public class Exercises {
      */
     public static void exercise8(String message) {
         System.out.println(message);
-        //Write your code here
+
+
 
         System.out.println("----------------------");
     }
