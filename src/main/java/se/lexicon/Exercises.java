@@ -19,7 +19,7 @@ public class Exercises {
 
         List<Person> persons = storage.findMany(person -> person.getFirstName().equalsIgnoreCase("Erik"));
 
-        System.out.println(persons.toString());
+        //System.out.println(persons.toString());
 
 
         System.out.println("----------------------");
