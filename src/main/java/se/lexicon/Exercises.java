@@ -1,6 +1,13 @@
 package se.lexicon;
 
 import se.lexicon.data.DataStorage;
+import se.lexicon.model.Gender;
+import se.lexicon.model.Person;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 public class Exercises {
 
@@ -11,7 +18,12 @@ public class Exercises {
     */
     public static void exercise1(String message) {
         System.out.println(message);
-        //Write your code here
+        Predicate<Person> filter = person -> "Erik".equals(person.getFirstName());
+        List<Person> result = storage.findMany(filter);
+        result.forEach(person -> System.out.println(person.getFirstName() + " " + person.getLastName()));
+
+
+
 
         System.out.println("----------------------");
     }
@@ -21,7 +33,10 @@ public class Exercises {
      */
     public static void exercise2(String message) {
         System.out.println(message);
-        //Write your code here
+        Predicate<Person> filter = person -> Gender.FEMALE.equals(person.getGender());
+        List<Person> result = storage.findMany(filter);
+        result.forEach(person -> System.out.println(person.getFirstName() + " " + person.getLastName()));
+
 
         System.out.println("----------------------");
     }
@@ -31,7 +46,9 @@ public class Exercises {
      */
     public static void exercise3(String message) {
         System.out.println(message);
-        //Write your code here
+        Predicate<Person> filter = person -> person.getBirthDate().isAfter(LocalDate.of(2000,1,1));
+        List<Person> result = storage.findMany(filter);
+        result.forEach(person -> System.out.println(person.getFirstName() + " " + person.getLastName()));
 
         System.out.println("----------------------");
     }
@@ -41,7 +58,11 @@ public class Exercises {
      */
     public static void exercise4(String message) {
         System.out.println(message);
-        //Write your code here
+        Predicate<Person> filter = person -> person.getId() == 123;
+        Person result = storage.findOne(filter);
+        System.out.println(result.getFirstName() + " " + result.getLastName());
+
+
 
         System.out.println("----------------------");
 
@@ -53,7 +74,10 @@ public class Exercises {
      */
     public static void exercise5(String message) {
         System.out.println(message);
-        //Write your code here
+        Predicate<Person> filter = person -> person.getId() == 456;
+        Function<Person, String> result = person -> person.getFirstName() + " " + person.getLastName() + " "+ person.getBirthDate();
+        String res = storage.findOneAndMapToString(filter, result);
+        System.out.println(res);
 
         System.out.println("----------------------");
     }
@@ -63,7 +87,8 @@ public class Exercises {
      */
     public static void exercise6(String message) {
         System.out.println(message);
-        //Write your code here
+
+
 
         System.out.println("----------------------");
     }
@@ -74,7 +99,9 @@ public class Exercises {
      */
     public static void exercise7(String message) {
         System.out.println(message);
-        //Write your code here
+
+        Predicate<Person> filter = person -> person.getBirthDate().isAfter(LocalDate.now().minusYears(10));
+        Function<Person, String> result = person -> person.getFirstName() + " " + person.getLastName() + " "+(LocalDate.now().minusYears(10));
 
         System.out.println("----------------------");
     }
@@ -84,7 +111,9 @@ public class Exercises {
      */
     public static void exercise8(String message) {
         System.out.println(message);
-        //Write your code here
+
+        Predicate<Person>
+
 
         System.out.println("----------------------");
     }

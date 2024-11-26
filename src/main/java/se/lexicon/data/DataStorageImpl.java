@@ -48,36 +48,59 @@ public class DataStorageImpl implements DataStorage {
 
     @Override
     public Person findOne(Predicate<Person> filter) {
-        //todo: implement the method
+        for (Person person : personList) {
+            if (filter.test(person)) {
+                return person;
+            }
+        }
         return null;
     }
 
     @Override
     public String findOneAndMapToString(Predicate<Person> filter, Function<Person, String> personToString) {
-        //todo: implement the method
-        return null;
+        Person person = findOne(filter);
+        return personToString.apply(person);
     }
 
     @Override
     public List<String> findManyAndMapEachToString(Predicate<Person> filter, Function<Person, String> personToString) {
-        //todo: implement the method
-        return null;
+          List<String> result = new ArrayList<>();
+          List<Person> persons = findMany(filter);
+          for (Person person : persons) {
+              result.add(personToString.apply(person));
+          }
+          return result;
     }
-
     @Override
     public void findAndDo(Predicate<Person> filter, Consumer<Person> consumer) {
-        //todo: implement the method
+        List<Person> persons = findMany(filter);
+        for (Person person : persons) {
+            consumer.accept(person);
+        }
+
     }
 
     @Override
     public List<Person> findAndSort(Comparator<Person> comparator) {
-        //todo: implement the method
-        return null;
+        List<Person> result = new ArrayList<>();
+        for (Person person : personList) {
+            if (comparator.compare(person, personList.get(0)) > 0) {
+                result.add(person);
+            }
+
+        }
+        return result;
     }
 
     @Override
     public List<Person> findAndSort(Predicate<Person> filter, Comparator<Person> comparator) {
-        //todo: implement the method
-        return null;
+        List<Person> result = new ArrayList<>();
+        for (Person person : personList) {
+            if (comparator.compare(person, personList.get(0)) > 0) {
+                result.add(person);
+
+            }
+        }
+        return result;
     }
 }
