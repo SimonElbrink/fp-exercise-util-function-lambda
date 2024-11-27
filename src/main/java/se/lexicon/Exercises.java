@@ -8,7 +8,9 @@ import se.lexicon.model.Person;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public class Exercises {
@@ -192,6 +194,16 @@ public class Exercises {
      */
     public static void exercise11(String message) {
         System.out.println(message);
+
+        List<Person> personsNameStartsWithAAndSorted = new ArrayList<>();
+
+        personsNameStartsWithAAndSorted = storage.findAndSort(person ->
+                person.getFirstName().startsWith("A"),
+                Comparator.comparing(person -> person.getBirthDate())
+        );
+
+        System.out.println(personsNameStartsWithAAndSorted.toString());
+
 
 
 
