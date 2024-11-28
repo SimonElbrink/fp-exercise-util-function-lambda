@@ -32,6 +32,7 @@ public class Exercises {
     /*
         TODO:  2.	Find all females in the collection using findMany().
      */
+
     public static void exercise2(String message) {
         System.out.println(message);
         Predicate<Person> filter = person -> Gender.FEMALE.equals(person.getGender());
@@ -173,7 +174,7 @@ public class Exercises {
         System.out.println(message);
         Predicate<Person> filter = person -> person.getBirthDate().getYear() < 1950;
         Comparator<Person> comparator = Comparator.comparing(Person::getBirthDate).reversed();
-        //Comparator<Person> comparator = Comparator.comparing(person -> person.getBirthDate()).reversed()
+        //Comparator<Person> comparator = Comparator.<Person, LocalDate>comparing(person -> person.getBirthDate()).reversed();
         List<Person> result = storage.findAndSort(filter, comparator);
         result.forEach(person -> System.out.println(person.toString()));
 
