@@ -215,9 +215,15 @@ public class Exercises {
      */
     public static void exercise12(String message) {
         System.out.println(message);
-        //Write your code here
 
-        System.out.println("----------------------");
+        storage.findAndSort(person ->
+                person.getBirthDate().isBefore(LocalDate.parse("1950-01-01")),
+                Comparator.comparing(Person::getBirthDate).reversed())
+                        .forEach(person -> System.out.println("Name:" + person.getFirstName() + " " + person.getLastName() + " born " + person.getBirthDate()));
+
+
+
+                        System.out.println("----------------------");
     }
 
     /*
@@ -225,7 +231,17 @@ public class Exercises {
      */
     public static void exercise13(String message) {
         System.out.println(message);
-        //Write your code here
+
+        Comparator<Person> compareLastName = Comparator.comparing(person -> person.getLastName());
+        Comparator<Person> compareFirstName = Comparator.comparing(person -> person.getFirstName());
+        Comparator<Person> compareBirthDay = Comparator.comparing(person -> person.getBirthDate());
+
+
+        storage.findAndSort(compareLastName
+                .thenComparing(compareFirstName)
+                .thenComparing(compareBirthDay))
+                .forEach(person -> System.out.println("Name:" + person.getFirstName() + " " + person.getLastName() + " born " + person.getBirthDate()));
+
 
         System.out.println("----------------------");
     }
