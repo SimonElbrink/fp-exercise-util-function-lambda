@@ -19,6 +19,7 @@ public class App {
         do {
             System.out.println(menu());
             System.out.print("Choose from 1-13: ");
+
             int number = getInt();
             switch (number) {
                 case 0:
